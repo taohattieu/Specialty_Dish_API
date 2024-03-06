@@ -1,15 +1,15 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { Account } from '../account/account.entity';
 
-@Entity()
+@Entity('auth')
 export class Auth {
   @PrimaryGeneratedColumn()
-  id: number;
+  auth_id: string;
 
-  @Column()
+  @Column({type: 'longtext'})
   accessToken: string;
 
-  @Column()
+  @Column({type: 'longtext'})
   refreshToken: string;
 
   @ManyToOne(() => Account, account => account.auths)

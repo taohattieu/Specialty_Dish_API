@@ -1,10 +1,10 @@
 import { Auth } from 'src/auth/auth.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
-@Entity()
+@Entity('accounts')
 export class Account {
   @PrimaryGeneratedColumn()
-  id: number;
+  account_id: string;
 
   @Column()
   email: string;
