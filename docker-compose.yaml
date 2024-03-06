@@ -13,7 +13,7 @@ services:
       - MYSQL_ROOT_PASSWORD=12345678
       - MYSQL_DATABASE=specialty_database
     ports:
-      - 3307:3306
+      - 3306:3306
     volumes:
       - specialty-volume:/var/lib/mysql
     networks:
