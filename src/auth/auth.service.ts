@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common';
+// auth.service.ts
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Auth } from './auth.entity';
@@ -14,14 +15,16 @@ export class AuthService {
 
   async login(email: string, password: string): Promise<Auth> {
     const account = await this.accountService.findAccountByEmail(email);
+
     if (account && account.password === password) {
       const auth = new Auth();
       auth.account = account;
       auth.accessToken = 'generated_access_token';
       auth.refreshToken = 'generated_refresh_token';
+      auth.isLoggedIn = true;
       return this.authRepository.save(auth);
     } else {
-      throw new Error('Invalid credentials');
+      throw new NotFoundException('Invalid credentials');
     }
   }
 }
