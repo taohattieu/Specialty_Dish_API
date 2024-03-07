@@ -3,14 +3,14 @@ import { Account } from '../account/account.entity';
 
 @Entity('auth')
 export class Auth {
-  @PrimaryGeneratedColumn()
-  auth_id: string;
-
-  @Column({type: 'longtext'})
+  @PrimaryGeneratedColumn('uuid')
   accessToken: string;
 
-  @Column({type: 'longtext'})
+  @Column({type:'longtext'})
   refreshToken: string;
+
+  @Column({ default: false }) 
+  isLoggedIn: boolean;
 
   @ManyToOne(() => Account, account => account.auths)
   @JoinColumn({ name: 'account_id' })

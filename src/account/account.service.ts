@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Account } from './account.entity';
+import { AccountDto } from './account.dto';
 
 @Injectable()
 export class AccountService {
@@ -11,8 +12,8 @@ export class AccountService {
     private accountRepository: Repository<Account>,
   ) {}
 
-  async createAccount(account: Account): Promise<Account> {
-    return await this.accountRepository.save(account);
+  async createAccount(AccountDto: AccountDto): Promise<Account> {
+    return await this.accountRepository.save(AccountDto);
   }
 
   async findAccountByEmail(email: string): Promise<Account> {
