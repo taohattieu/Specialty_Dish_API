@@ -6,7 +6,7 @@ import { ConfigService } from '@nestjs/config';
 
 const apiDocumentationCredentials = {
   name: 'admin',
-  pass: '@abc@@',
+  pass: '@abc',
 };
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

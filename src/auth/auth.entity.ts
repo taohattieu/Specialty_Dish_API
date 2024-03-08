@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToOne } from 'typeorm';
 import { Account } from '../account/account.entity';
 
 @Entity('auth')
@@ -12,7 +12,7 @@ export class Auth {
   @Column({ default: false }) 
   isLoggedIn: boolean;
 
-  @ManyToOne(() => Account, account => account.auths)
+  @OneToOne(() => Account, account => account.auths)
   @JoinColumn({ name: 'account_id' })
   account: Account;
 }

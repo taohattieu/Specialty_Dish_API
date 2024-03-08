@@ -13,11 +13,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Account } from './account/account.entity';
 import { AccountModule } from './account/account.module';
 import { Auth } from './auth/auth.entity';
+import { SpecialtyModule } from './specialty/specialty.module';
+import { Province } from './provinces/provinces.entity';
+import { Specialty } from './specialty/specialty.entity';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-    isGlobal: true
+      isGlobal: true,
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
@@ -26,7 +29,12 @@ import { Auth } from './auth/auth.entity';
       username: 'admin',
       password: '12345678',
       database: 'specialty_database',
-      entities: [Account, Auth],
+      entities: [
+        Account, 
+        Auth, 
+        Province, 
+        Specialty
+      ],
       synchronize: true,
       // logging: true
     }),
@@ -38,6 +46,7 @@ import { Auth } from './auth/auth.entity';
     SharedModule,
     ContributionModule,
     NotificationModule,
+    SpecialtyModule,
   ],
   controllers: [AppController],
   providers: [AppService],

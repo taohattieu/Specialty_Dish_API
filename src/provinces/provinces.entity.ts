@@ -1,11 +1,19 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Specialty } from 'src/specialty/specialty.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
-@Entity()
+@Entity('provinces')
 export class Province {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  provinces_id: string;
 
   @Column()
   name: string;
+
+  @Column()
+  image: string
+
+  @OneToMany(() => Specialty, specialty => specialty.province)
+  specialty: Specialty[];
+
 
 }

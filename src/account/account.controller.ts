@@ -11,7 +11,6 @@ import { AccountDto } from './account.dto';
 export class AccountController {
     constructor(
       private readonly accountService: AccountService,
-      private readonly authService: AuthService,
     ) {}
 
   @Get(':email')
@@ -20,30 +19,32 @@ export class AccountController {
   }
 
   @Post('login')
-    async login(@Body() accountDto: AccountDto): Promise<string> {
-      const account = await this.accountService.findAccountByEmail(accountDto.email);
+    async login(@Body(new ValidationPipe()) accountDto: AccountDto) {
+      // const account = await this.accountService.findAccountByEmail(accountDto.email);
   
-      if (account && account.password === accountDto.password) {
-        const auth = await this.authService.login(accountDto.email, accountDto.password);
+      // if (account && account.password === accountDto.password) {
+      //   const auth = await this.authService.login(accountDto.email, accountDto.password);
   
-        if (auth.isLoggedIn) {
-          return 'Login successful';
-        } else {
-          throw new UnauthorizedException('Account is not logged in');
-        }
-      } else {
-        throw new UnauthorizedException('Invalid credentials');
-      }
+      //   if (auth.isLoggedIn) {
+      //     return 'Login successful';
+      //   } else {
+      //     throw new UnauthorizedException('Account is not logged in');
+      //   }
+      // } else {
+      //   throw new UnauthorizedException('Invalid credentials');
+      // }
+
+      // return this.accountService.login(accountDto);
     }
 
-
-  @Post()
+  @Post('register')
   async create(@Body(new ValidationPipe()) accountDto: AccountDto): Promise<AccountDto> {
     return this.accountService.createAccount(accountDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string): Promise<void> {
-    return this.accountService.remove(id);
+  removeId(@Param('id') id: string): Promise<void> {
+    return this.accountService.removeId(id);
   }
+
 }
