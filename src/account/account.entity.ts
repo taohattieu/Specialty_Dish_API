@@ -1,4 +1,4 @@
-import { Entity, Column, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, OneToMany, PrimaryGeneratedColumn, OneToOne, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { Auth } from '../auth/auth.entity';
 import { v4 as uuidv4 } from 'uuid';
 import { IsEmail, IsNotEmpty, IsString, MaxLength, MinLength } from 'class-validator';
@@ -26,6 +26,13 @@ export class Account {
   @Column()
   password: string;
 
-  @OneToMany(() => Auth, auth => auth.account)
+  @CreateDateColumn()
+  CreateAt: Date;
+
+  @UpdateDateColumn()
+  UpdateAt: Date;
+
+
+  @OneToOne(() => Auth, auth => auth.account)
   auths: Auth[];
 }

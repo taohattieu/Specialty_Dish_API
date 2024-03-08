@@ -12,11 +12,11 @@ export class AccountDto{
     email: string
 
     @Optional()
-    @ApiProperty()
+    @ApiProperty({example: "John"})
     firstName: string
 
     @Optional()
-    @ApiProperty()
+    @ApiProperty({example: "Doe"})
     lastName: string
 
     @IsString()
@@ -24,5 +24,9 @@ export class AccountDto{
     @MinLength(5)
     @ApiProperty({ example:""})
     password:string
+
+    CreateAt: Date
+
+    UpdateAt: Date
 
 }
