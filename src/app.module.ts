@@ -16,6 +16,7 @@ import { Auth } from './auth/auth.entity';
 import { SpecialtyModule } from './specialty/specialty.module';
 import { Province } from './provinces/provinces.entity';
 import { Specialty } from './specialty/specialty.entity';
+import { User } from './user/user.entity';
 
 @Module({
   imports: [
@@ -33,7 +34,8 @@ import { Specialty } from './specialty/specialty.entity';
         Account, 
         Auth, 
         Province, 
-        Specialty
+        Specialty,
+        User
       ],
       synchronize: true,
       // logging: true

@@ -25,8 +25,8 @@ export class AccountDto{
     @ApiProperty({ example:""})
     password:string
 
-    CreateAt: Date
+    createdAt: Date
 
-    UpdateAt: Date
+    updatedAt: Date
 
 }
