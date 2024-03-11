@@ -1,20 +1,16 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, JoinColumn } from 'typeorm';
+import { Account } from 'src/account/account.entity';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, JoinColumn, OneToOne } from 'typeorm';
 
-@Entity()
+@Entity('users')
 export class User {
   @PrimaryGeneratedColumn('uuid')
   user_id: string;
 
   @Column()
   email: string;
-  @Column({ length: 100 })
-  password: string;
 
-  @CreateDateColumn()
-  createdAt: Date;
-  
-  @UpdateDateColumn()
-  updatedAt: Date;
+  @Column()
+  password: string;
 
   @Column()
   firstName: string;
@@ -23,9 +19,19 @@ export class User {
   lastName: string;
 
   @Column()
+  gender: 'male' | 'female';
+
+  @Column()
   phone: number;
 
-//khóa phụ
-// @JoinColumn()
+  @Column()
+  address: string;
+
+  @Column()
+  avatar: string;
+
+  @OneToOne(() => Account, account => account.users)
+  @JoinColumn({ name: 'account_id' })
+  account: Account;
 
 }

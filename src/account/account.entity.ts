@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { IsEmail, IsNotEmpty, IsString, MaxLength, MinLength } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { Optional } from '@nestjs/common';
+import { User } from 'src/user/user.entity';
 
 @Entity('accounts')
 export class Account {
@@ -27,12 +28,13 @@ export class Account {
   password: string;
 
   @CreateDateColumn()
-  CreateAt: Date;
+  createdAt: Date;
 
   @UpdateDateColumn()
-  UpdateAt: Date;
+  updatedAt: Date;
 
 
   @OneToOne(() => Auth, auth => auth.account)
   auths: Auth[];
+  users: User[];
 }

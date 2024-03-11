@@ -19,7 +19,7 @@ export class AccountController {
   }
 
   @Post('login')
-    async login(@Body(new ValidationPipe()) accountDto: AccountDto) {
+    async accountLogin(@Body(new ValidationPipe()) accountDto: AccountDto) {
       // const account = await this.accountService.findAccountByEmail(accountDto.email);
   
       // if (account && account.password === accountDto.password) {
@@ -34,7 +34,7 @@ export class AccountController {
       //   throw new UnauthorizedException('Invalid credentials');
       // }
 
-      // return this.accountService.login(accountDto);
+      // return this.accountService.accountLogin(accountDto);
     }
 
   @Post('register')

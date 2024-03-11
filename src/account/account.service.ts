@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { Account } from './account.entity';
 import { AccountDto } from './account.dto';
 import { Auth } from 'src/auth/auth.entity';
+import { AccountController } from './account.controller';
 
 @Injectable()
 export class AccountService {
@@ -12,8 +13,8 @@ export class AccountService {
     private accountRepository: Repository<Account>,
     // private accountService: AccountService,
     
-    // @InjectRepository(Auth)
-    // private authRepository: Repository<Auth>,
+    @InjectRepository(Auth)
+    private authRepository: Repository<Auth>,
 
   ) {}
 
@@ -30,7 +31,7 @@ export class AccountService {
     return createdAccount;
   }
 
-  // async login(accountDto: AccountDto): Promise<Account> {
+  // async accountLogin(accountDto: AccountDto): Promise<Account> {
   //   const account = await this.findAccountByEmail(accountDto.email);
 
   //   if (account && account.password === accountDto.password) {

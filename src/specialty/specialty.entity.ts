@@ -19,6 +19,6 @@ export class Specialty {
   description: string;
 
   @ManyToOne(() => Province, province => province.specialty)
-  @JoinColumn({ name: 'province_id' })
+  @JoinColumn({ name: 'provinces_id' })
   province: Province;
 }
